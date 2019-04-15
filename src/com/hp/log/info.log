@@ -1,0 +1,4 @@
+2019-04-11 12:24:05 下午 [Thread: main][ Class:org.springframework.context.support.ClassPathXmlApplicationContext >> Method: org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:578) ]
+INFO:Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7907ec20: startup date [Thu Apr 11 12:24:05 CST 2019]; root of context hierarchy
+2019-04-11 12:24:05 下午 [Thread: main][ Class:org.springframework.beans.factory.xml.XmlBeanDefinitionReader >> Method: org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317) ]
+INFO:Loading XML bean definitions from class path resource [applicationContext.xml]
