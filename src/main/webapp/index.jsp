@@ -9,102 +9,58 @@
 <html>
 <head>
     <title>ssm_test</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 </head>
 <style>
-    input {
-        height: 25px;
-        line-height: 25px;
+    body {
+        padding: 10px;
+    }
+
+    input[type=text] {
+        display: inline-block;
+        width: 120px;
         padding: 0 5px 0 5px;
     }
-    input[type=text] {
-        width: 100px;
+
+    .btn {
+        margin-top: -5px;
+    }
+
+    a, input, br, h5 {
+        margin-top: 10px;
     }
 </style>
 <body>
-    <a href="/ssm/account/findAll">查询所有账户</a>
-    <br />
-    <br />
-    <a href="/ssm/WEB-INF/pages/test.jsp">页面跳转</a>
-    <br />
-    <br />
-    *************************************************
-    <br />
-    <h3>form测试插入</h3>
+<div>
+    <a href="/ssm/account/findAll" class="btn btn-success">查询所有账户</a>
+    <input type="button" class="findall_btna btn btn-success" value="ajax测试查询所有账户"/>
+
+    <h5>form测试插入</h5>
     <form action="/ssm/account/save" method="post">
-        <input type="text" name="id" class="id" placeholder="id" />
-        <input type="text" name="name" class="name" placeholder="name" />
-        <input type="text" name="money" class="money" placeholder="money" />
-        <input type="submit">
+        <input type="text" name="name" class="name form-control" placeholder="name"/>
+        <input type="text" name="money" class="money form-control" placeholder="money"/>
+        <input type="submit" class="btn btn-success">
     </form>
 
-    <input type="button" class="findall_btna" value="ajax测试查询所有账户" />
+    <h5>ajax测试插入</h5>
+    <input type="text" name="namea" class="name namea form-control" placeholder="name"/>
+    <input type="text" name="moneya" class="money moneya form-control" placeholder="money"/>
+    <input type="button" class="submita btn btn-success" value="提交">
 
-    <h3>ajax测试插入</h3>
-    <input type="text" name="ida" class="id ida" placeholder="id" />
-    <input type="text" name="namea" class="name namea" placeholder="name" />
-    <input type="text" name="moneya" class="money moneya" placeholder="money" />
-    <input type="button" class="submita" value="提交">
+    <h5>ajax测试删除</h5>
+    <input type="text" name="id_del" class="id_del form-control" placeholder="id"/>
+    <input type="submit" class="del btn btn-success" value="根据id删除"/>
 
-    <h3>ajax测试删除</h3>
-    <input type="text" name="id_del" class="id_del" placeholder="id" />
-    <input type="button" class="del" value="根据id删除" />
-
-    <h3>ajax测试更改</h3>
+    <h5>ajax测试更改</h5>
+    <input type="text" name="id" class="idu form-control" placeholder="id"/>
+    <input type="text" name="name" class="nameu form-control" placeholder="name"/>
+    <input type="text" name="money" class="moneyu form-control" placeholder="money"/>
+    <input type="button" class="updatea btn btn-success" value="提交">
 
 
-    <script>
-        $(".findall_btna").click(function () {
-           $.ajax({
-               url: "/ssm/account/findAlla",
-               type: "post",
-               contentType: "application/json",
-               dataType: "json",
-               data: JSON.stringify({id: $(".ida").val(), name: $(".namea").val(), money: $(".moneya").val()}),
-               success: function (data) {
-                   console.log(data);
-               },
-               error: function (data) {
-                   alert("响应出错！" + data);
-               }
-           })
-        });
-        $(".submita").click(function () {
-            if ($(".ida").val() != null && $(".ida").val() != "") {
-                $.ajax({
-                    url: "/ssm/account/testAjax",
-                    type: "post",
-                    contentType: "application/json",
-                    dataType: "json",
-                    data: JSON.stringify({id: $(".ida").val(), name: $(".namea").val(), money: $(".moneya").val()}),
-                    success: function (data) {
-                        console.log(data);
-                    },
-                    error: function (data) {
-                        alert("响应出错！" + data);
-                    }
-                });
-            } else {
-                alert("请填写字段！");
-            }
-        });
-        $(".del").click(function () {
-            let id_del = $("id_del").val();
-            if (id_del != null && id_del != "") {
-                $.ajax({
-                    url: "/ssm/account/",
-                    type: "post",
-                    contentType: "application/json",
-                    dataType: "json",
-                    data: JSON.stringify({id: id_del}),
-                    success: function (data) {
-                        alert(data.toString());
-                    }
-                });
-            } else {
-                alert("请填写字段！");
-            }
-        })
-    </script>
+</div>
+<script src="js/index.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

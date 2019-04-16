@@ -2,11 +2,15 @@ package com.zhm.test;
 
 import com.zhm.dao.AccountDao;
 import com.zhm.domain.Account;
+import com.zhm.service.AccountService;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,7 +20,12 @@ import java.util.List;
  * @author lzmtx
  * @date 2019/4/12 - 9:19
  */
+@Controller
 public class TestMybatis {
+
+    @Autowired
+    private AccountService accountService;
+
     @Test
     public void run1() throws Exception {
         //加载配置文件
@@ -57,4 +66,16 @@ public class TestMybatis {
         session.close();
         in.close();
     }
+
+    @Test
+    @RequestMapping("/fuck")
+    public void test_idDel() {
+        for (int i = 10; i < 26; i++) {
+            accountService.idDel(i);
+        }
+        for (Account account : accountService.findAll()) {
+            System.out.println(account);
+        }
+    }
+
 }

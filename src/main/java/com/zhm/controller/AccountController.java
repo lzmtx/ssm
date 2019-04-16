@@ -1,14 +1,18 @@
 package com.zhm.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.zhm.domain.Account;
 import com.zhm.service.AccountService;
 import com.zhm.test.TestMybatis;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,12 +37,11 @@ public class AccountController {
         return "test";
     }
 
-    @RequestMapping("/findAlla")
-    public @ResponseBody Account findAlla(@RequestBody Account account, HttpServletResponse response, HttpServletRequest request) throws IOException {
-        System.out.println(account);
-        accountService.findAll();
-        System.out.println(account);
-        return account;
+    @RequestMapping(path = "/findAlla", method = RequestMethod.POST)
+    public @ResponseBody List<Account> findAlla(HttpServletResponse response, HttpServletRequest request) throws IOException {
+        List<Account> accounts = accountService.findAll();
+        System.out.println(accounts);
+        return accounts;
     }
 
     @RequestMapping("/insert")
@@ -50,11 +53,11 @@ public class AccountController {
         return account;
     }
 
+    //表单不能使用@RequestBody Account account方式接收参数
     @RequestMapping("/save")
-    public void save(int id, String name, Double money, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        System.out.println("save(): request: id=" + id + "name=" + name + "money=" + money);
+    public void save(String name, Double money, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        System.out.println("save(): request: name=" + name + ", money=" + money);
         Account account = new Account();
-        account.setId(id);
         account.setName(name);
         account.setMoney(money);
         accountService.saveAccount(account);
@@ -62,13 +65,30 @@ public class AccountController {
     }
 
     @RequestMapping("/testAjax")
-    public @ResponseBody Account testAjax(@RequestBody Account account, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        System.out.println(account);
-//        account.setId(12);
-//        account.setName("xiaoming");
-//        account.setMoney(768.0);
+    public @ResponseBody Account testAjax(@RequestBody Account account) {
+        System.out.println("textAjax(): request: id=" + account.getId() + ", name=" + account.getName() + ", money=" + account.getMoney());
         accountService.saveAccount(account);
-        System.out.println(account);
         return account;
     }
+
+    @RequestMapping(path = "/idDel", method = RequestMethod.POST)
+    public void idDel(int id, HttpServletResponse response) throws IOException{
+        System.out.println("idDel(): request: id=" + id);
+        accountService.idDel(id);
+        //返回json格式的操作状态
+        JSONObject obj = new JSONObject();
+        obj.put("state", "ok");
+        response.getWriter().write(JSON.toJSONString(obj));
+    }
+
+    @RequestMapping("/idUpdate")
+    public void idUpdate(@RequestBody Account account, HttpServletResponse response) throws IOException {
+        System.out.println("idUpdate(): request: id=" + account.getId() + ", name=" +account.getName() + ", money=" +account.getMoney());
+        accountService.idUpdate(account);
+        //返回json格式的操作状态
+        JSONObject obj = new JSONObject();
+        obj.put("state", "ok");
+        response.getWriter().write(JSON.toJSONString(obj));
+    }
+
 }
