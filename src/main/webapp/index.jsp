@@ -33,11 +33,11 @@
 </style>
 <body>
 <div>
-    <a href="/ssm/account/findAll" class="btn btn-success">查询所有账户</a>
+    <a href="${pageContext.request.contextPath}/account/findAll" class="btn btn-success">查询所有账户</a>
     <input type="button" class="findall_btna btn btn-success" value="ajax测试查询所有账户"/>
 
     <h5>form测试插入</h5>
-    <form action="/ssm/account/save" method="post">
+    <form action="${pageContext.request.contextPath}/account/save" method="post">
         <input type="text" name="name" class="name form-control" placeholder="name"/>
         <input type="text" name="money" class="money form-control" placeholder="money"/>
         <input type="submit" class="btn btn-success">
@@ -57,6 +57,10 @@
     <input type="text" name="name" class="nameu form-control" placeholder="name"/>
     <input type="text" name="money" class="moneyu form-control" placeholder="money"/>
     <input type="button" class="updatea btn btn-success" value="提交">
+
+    <a href="${pageContext.request.contextPath}/handler/hello" class="btn btn-success">拦截器测试</a>
+
+    <a href="${pageContext.request.contextPath}/account/toMain" class="btn btn-success">跳转到main.jsp</a>
 
 
 </div>

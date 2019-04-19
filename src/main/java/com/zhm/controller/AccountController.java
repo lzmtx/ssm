@@ -91,4 +91,11 @@ public class AccountController {
         response.getWriter().write(JSON.toJSONString(obj));
     }
 
+    //测试自定义拦截器
+    @RequestMapping("/toMain")
+    public String tomain() {
+        System.out.println("接收请求跳转到main.jsp");
+        return "main";
+    }
+
 }

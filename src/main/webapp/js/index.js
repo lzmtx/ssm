@@ -1,6 +1,6 @@
 $(".findall_btna").click(function () {
     $.ajax({
-        url: "/ssm/account/findAlla",
+        url: "${pageContext.request.contextPath}/account/findAlla",
         type: "post",
         contentType: "application/json",
         dataType: "json",
@@ -19,7 +19,7 @@ $(".findall_btna").click(function () {
 $(".submita").click(function () {
     if ($(".namea").val() != null && $(".namea").val() != "") {
         $.ajax({
-            url: "/ssm/account/testAjax",
+            url: "${pageContext.request.contextPath}/account/testAjax",
             type: "post",
             contentType: "application/json",
             dataType: "json",
@@ -43,7 +43,7 @@ $(".del").click(function () {
     if ($(".id_del").val() != null && $(".id_del").val() != "") {
         console.log($(".id_del").val());
         $.ajax({
-            url: "/ssm/account/idDel",
+            url: "${pageContext.request.contextPath}/account/idDel",
             type: "post",
             dataType: "json",
             data:{
@@ -67,7 +67,7 @@ $(".updatea").click(function () {
     if ($(".idu").val() != null && $(".idu").val() != "") {
         console.log($(".idu").val());
         $.ajax({
-            url: "/ssm/account/idUpdate",
+            url: "${pageContext.request.contextPath}/account/idUpdate",
             type: "post",
             dataType: "json",
             contentType: "application/json",
