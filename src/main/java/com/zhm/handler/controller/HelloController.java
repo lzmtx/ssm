@@ -15,7 +15,7 @@ public class HelloController {
      */
     @RequestMapping("/hello")
     public String hello() {
-        System.out.println("hello!");
-        return "handler_success";
+        System.out.println("hello!即将跳转至handlers.jsp");
+        return "handlers";
     }
 }

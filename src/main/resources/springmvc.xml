@@ -29,24 +29,25 @@
         <!--拦截所有请求-->
         <!--<bean class="com.zhm.handler.interceptor.CustomInterceptor" />-->
 
-        <!--配置拦截器1-->
-        <mvc:interceptor>
-            <mvc:mapping path="/**"/>
-            <bean class="com.zhm.handler.interceptor.CustomInterceptor" />
-        </mvc:interceptor>
-        <!--配置拦截器2-->
+        <!--配置拦截器3_login拦截器-->
         <mvc:interceptor>
             <mvc:mapping path="/handler/hello"/>
-            <bean class="com.zhm.handler.interceptor.Interceptor" />
+            <bean class="com.zhm.handler.interceptor.CustomInterceptor" />
         </mvc:interceptor>
 
         <!--配置拦截器3_login拦截器-->
         <mvc:interceptor>
-            <mvc:mapping path="/**"/>
-            <bean class="com.zhm.handler.interceptor.LoginIterceptor" />
+            <mvc:mapping path="/account/toMain"/>
+            <mvc:mapping path="/login"/>
+            <mvc:mapping path="/logout"/>
+            <bean class="com.zhm.handler.interceptor.LoginItercep" />
         </mvc:interceptor>
-
     </mvc:interceptors>
 
+    <!--配置文件上传解析器multipartresolver-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--设置请求编码格式-->
+        <property name="defaultEncoding" value="UTF-8" />
+    </bean>
 
 </beans>

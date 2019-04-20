@@ -24,7 +24,7 @@
     }
 
     .btn {
-        margin-top: -5px;
+        /*margin-top: -5px;*/
     }
 
     a, input, br, h5 {
@@ -57,10 +57,15 @@
     <input type="text" name="name" class="nameu form-control" placeholder="name"/>
     <input type="text" name="money" class="moneyu form-control" placeholder="money"/>
     <input type="button" class="updatea btn btn-success" value="提交">
-
+    <br />
     <a href="${pageContext.request.contextPath}/handler/hello" class="btn btn-success">拦截器测试</a>
-
+    <br />
     <a href="${pageContext.request.contextPath}/account/toMain" class="btn btn-success">跳转到main.jsp</a>
+    <br />
+    <a href="${pageContext.request.contextPath}/account/toUploadFile" class="btn btn-success">跳转到fileUpload.jsp</a>
+    <br />
+    <a href="${pageContext.request.contextPath}/download?filename=1.jpg" class="btn btn-success">文件下载</a>
+
 
 
 </div>

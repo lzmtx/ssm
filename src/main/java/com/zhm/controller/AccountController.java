@@ -98,4 +98,11 @@ public class AccountController {
         return "main";
     }
 
+    //测试文件上传
+    @RequestMapping("/toUploadFile")
+    public String upLoadFile() {
+        System.out.println("接收请求跳转到fileUpload.jsp");
+        return "fileUpload";
+    }
+
 }
